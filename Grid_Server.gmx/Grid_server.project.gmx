@@ -15,7 +15,7 @@
   </scripts>
   <objects name="objects">
     <object>objects\obj_server</object>
-    <object>objects\obj_hub</object>
+    <object>objects\obj_server_data</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_create_server</room>

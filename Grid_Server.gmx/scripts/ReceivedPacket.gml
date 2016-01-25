@@ -16,12 +16,15 @@ switch( msgid ) {
     case 2: // Create Hub.
         var hub_x = buffer_read( buffer , buffer_u32 );
         var hub_y = buffer_read( buffer , buffer_u32 );
+        obj_server_data.hub_count += 1;
+        var hub_id = obj_server_data.hub_count;
         
         // Send info to all other clients.
         buffer_seek( Buffer , buffer_seek_start , 0 );
         buffer_write( Buffer, buffer_u8 , 2 );
         buffer_write( Buffer , buffer_u32 , hub_x );
         buffer_write( Buffer , buffer_u32 , hub_y );
+        buffer_write( Buffer , buffer_u32 , hub_id );
         
         var clientid = 0;
         var socketid = 0;
