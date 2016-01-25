@@ -62,6 +62,7 @@ Ping = 0;
             <kind>1</kind>
             <string>/// Send info to server.
 
+// Send info for ping.
 buffer_seek( Buffer , buffer_seek_start , 0 );
 buffer_write( Buffer , buffer_u8 , 1 );
 buffer_write( Buffer , buffer_u32 , current_time );

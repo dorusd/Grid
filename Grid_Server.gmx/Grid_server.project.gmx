@@ -5,7 +5,9 @@
   </Configs>
   <NewExtensions/>
   <sounds name="sound"/>
-  <sprites name="sprites"/>
+  <sprites name="sprites">
+    <sprite>sprites\spr_hub</sprite>
+  </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -13,6 +15,7 @@
   </scripts>
   <objects name="objects">
     <object>objects\obj_server</object>
+    <object>objects\obj_hub</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_create_server</room>
