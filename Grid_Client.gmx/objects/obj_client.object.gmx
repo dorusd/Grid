@@ -25,17 +25,47 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Create server.
+            <string>/// Create client to server.
 
-// Ask player for server info.
-var port = real(get_string("Port: ","6510"));
-var players = real(get_string("Number of players: ","2"));
+// Ask player for server details.
+var ip = get_string("Server IP: ", "127.0.0.1");
+var port = real(get_string("Port: ", "6510"));
+var playerID = real(get_string("PlayerID: ", "A"));
 
-// Create server.
-Server = network_create_server( network_socket_tcp , port , players );
-
+// Connect to server.
+Socket = network_create_socket( network_socket_tcp );
+isConnected = network_connect( Socket , ip , port );
 Buffer = buffer_create( 1024 , buffer_fixed , 1 );
-SocketList = ds_list_create();
+Result = 0;
+Ping = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Send info to server.
+
+buffer_seek( Buffer , buffer_seek_start , 0 );
+buffer_write( Buffer , buffer_u8 , 1 );
+buffer_write( Buffer , buffer_u32 , current_time );
+Result = network_send_packet( Socket , Buffer , buffer_tell( Buffer ) );
 </string>
           </argument>
         </arguments>
@@ -59,31 +89,15 @@ SocketList = ds_list_create();
           <argument>
             <kind>1</kind>
             <string>/// Read network traffic.
-   
-var type_event = ds_map_find_value( async_load , "type" );
 
+var type_event = ds_map_find_value( async_load , "type" );
 switch( type_event ) {
-    case network_type_connect:
-        var socket = ds_map_find_value( async_load , "socket" );
-        ds_list_add( SocketList , socket );
-        break;
-        
-    case network_type_disconnect:
-        var socket = ds_map_find_value( async_load , "socket" );
-        var findsocket = ds_list_find_index( SocketList , socket );
-         
-        if ( findsocket &gt;= 0 ) {
-            ds_list_delete( SocketList , findsocket );
-        }
-        break;
-        
     case network_type_data:
         var buffer = ds_map_find_value( async_load , "buffer" );
-        var socket = ds_map_find_value( async_load , "id" );
         buffer_seek( buffer , buffer_seek_start , 0 );
-        ReceivedPacket( buffer , socket );
+        ReceivedPacket( buffer );
         break;
-}
+   }
 </string>
           </argument>
         </arguments>
@@ -106,11 +120,10 @@ switch( type_event ) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Destroy server.
+            <string>/// Destroy client.
 
-network_destroy( Server );
+network_destroy( Socket );
 buffer_delete( Buffer );
-ds_list_destroy( SocketList );
 </string>
           </argument>
         </arguments>
@@ -133,11 +146,12 @@ ds_list_destroy( SocketList );
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Draw server info.
+            <string>/// Draw client info.
 
-
-draw_text( 5 , 5 , "Server Status: " + string( Server &gt;= 0 ) );
-draw_text( 5 , 20 , "Total Clients: " + string( ds_list_size( SocketList ) ) );
+if (keyboard_check(ord("0"))) {
+    draw_text( 5 , 5 , "Connected: " + string( obj_client.Result &gt;= 0 ) );
+    draw_text( 5 , 20 , "My Ping: " + string( obj_client.Ping ) );
+}
 </string>
           </argument>
         </arguments>

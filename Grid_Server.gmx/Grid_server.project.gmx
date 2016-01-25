@@ -12,10 +12,10 @@
     <script>scripts\ReceivedPacket.gml</script>
   </scripts>
   <objects name="objects">
-    <object>objects\ObjClient</object>
+    <object>objects\obj_server</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\RmClient</room>
+    <room>rooms\rm_create_server</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
