@@ -11,7 +11,8 @@
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\ReceivedPacket.gml</script>
+    <script>scripts\src_receivedPacket.gml</script>
+    <script>scripts\src_followMouse.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\obj_client</object>

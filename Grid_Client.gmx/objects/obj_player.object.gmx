@@ -33,6 +33,79 @@ hub_selected = 0;
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Setting up variables for view.
+
+margin_x = 40;
+margin_y = 40;
+cview = 0; // Current view.
+speed_view_movement = 1;
+
+// Intial view location.
+view_xport[cview] = 0;
+view_yport[cview] = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Make view follow mouse.
+
+// Move screen to the left.
+if ((mouse_x - view_xview[cview] &lt; margin_x) and (view_xview[cview] != 0)) {
+    view_xview[cview] -= speed_view_movement;
+}
+// Move screen to the right.
+if ((mouse_x - view_xview[cview] &gt; (view_wview[0] - margin_x)) and (view_xview[cview] != room_width)) {
+    view_xview[cview] += speed_view_movement;
+}
+
+// Move screen up.
+if ((mouse_y - view_yview[cview] &lt; margin_y) and (view_yview[cview] != 0)) {
+    view_yview[cview] -= speed_view_movement;
+}
+
+// Move screen down.
+if ((mouse_y - view_yview[0] &gt; (view_hview[cview] -  margin_y)) and (view_yview[cview] != room_height)) {
+    view_yview[cview] += speed_view_movement;
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="6" enumb="53">
       <action>
