@@ -28,14 +28,53 @@
             <string>/// Create server.
 
 // Ask player for server info.
-var port = real(get_string("Port: ","6510"));
-var players = real(get_string("Number of players: ","2"));
+port = real(get_string("Port: ","6510"));
+amount_players = real(get_string("Number of players: ","2"));
 
 // Create server.
-Server = network_create_server( network_socket_tcp , port , players );
+Server = network_create_server(network_socket_tcp , port , amount_players);
 
-Buffer = buffer_create( 1024 , buffer_fixed , 1 );
+Buffer = buffer_create(1024 , buffer_fixed , 1);
 SocketList = ds_list_create();
+
+// Wait for start of game.
+game_start = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Start game.
+
+// Wait until enough players are online to start the game.
+if ((ds_list_size(SocketList) == amount_players) and (game_start == false)) {
+    
+    // Notify server.
+    show_message("Game is about to start.");
+
+    src_send_main_hub(); // Create main hubs for all players.
+    src_send_start_msg(); // Notify all players that game has started.
+    
+    // Make sure game is only started once.
+    game_start = true;
+}
 </string>
           </argument>
         </arguments>

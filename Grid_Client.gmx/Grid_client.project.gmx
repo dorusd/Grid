@@ -7,16 +7,18 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_hub</sprite>
+    <sprite>sprites\spr_main_hub</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\src_receivedPacket.gml</script>
-    <script>scripts\src_followMouse.gml</script>
+    <script>scripts\src_received_packet.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\obj_client</object>
     <object>objects\obj_hub</object>
+    <object>objects\obj_hub_main</object>
+    <object>objects\obj_field</object>
     <object>objects\obj_player</object>
   </objects>
   <rooms name="rooms">

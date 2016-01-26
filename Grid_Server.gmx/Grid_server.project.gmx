@@ -12,6 +12,10 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\ReceivedPacket.gml</script>
+    <scripts name="start_server">
+      <script>scripts\src_send_main_hub.gml</script>
+      <script>scripts\src_send_start_msg.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <object>objects\obj_server</object>

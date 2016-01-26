@@ -38,6 +38,10 @@ isConnected = network_connect( Socket , ip , port );
 Buffer = buffer_create( 1024 , buffer_fixed , 1 );
 Result = 0;
 Ping = 0;
+
+// Wait until game has started.
+room_speed = 1;
+game_start = false;
 </string>
           </argument>
         </arguments>
@@ -71,6 +75,30 @@ Result = network_send_packet( Socket , Buffer , buffer_tell( Buffer ) );
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Start game.
+if (game_start = true) {
+    room_speed = 500;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="7" enumb="68">
       <action>
@@ -96,7 +124,7 @@ switch( type_event ) {
     case network_type_data:
         var buffer = ds_map_find_value( async_load , "buffer" );
         buffer_seek( buffer , buffer_seek_start , 0 );
-        src_receivedPacket( buffer );
+        src_received_packet( buffer );
         break;
    }
 </string>
@@ -150,8 +178,12 @@ buffer_delete( Buffer );
             <string>/// Draw client info.
 
 if (keyboard_check(ord("0"))) {
-    draw_text( 5 , 5 , "Connected: " + string( obj_client.Result &gt;= 0 ) );
-    draw_text( 5 , 20 , "My Ping: " + string( obj_client.Ping ) );
+    draw_text(  view_xview[obj_player.cview] + 5,
+                view_yview[obj_player.cview] + 5,
+                "Connected: " + string(obj_client.Result &gt;= 0));
+    draw_text(  view_xview[obj_player.cview] + 5,
+                view_yview[obj_player.cview] + 20,
+                "My Ping: " + string(obj_client.Ping));
 }
 </string>
           </argument>
