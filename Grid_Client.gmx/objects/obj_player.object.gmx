@@ -53,13 +53,17 @@ hub_selected = 0;
             <kind>1</kind>
             <string>/// Create hub.
 
-// Send info about hub to server.
-buffer_seek( obj_client.Buffer , buffer_seek_start , 0 );
-buffer_write( obj_client.Buffer , buffer_u8 , 2 ); // Id of action.
-buffer_write( obj_client.Buffer , buffer_u32 , mouse_x ); // X of new hub.
-buffer_write( obj_client.Buffer , buffer_u32 , mouse_y ); // Y of new hub.
-network_send_packet( obj_client.Socket , obj_client.Buffer , buffer_tell( obj_client.Buffer ) );
+// Check if no hub is near.
+nearest_hub = instance_nearest(mouse_x, mouse_y, obj_hub);
 
+if (point_distance(mouse_x, mouse_y, nearest_hub.x, nearest_hub.y) &gt; 40) {
+    // Send info about hub to server.
+    buffer_seek( obj_client.Buffer , buffer_seek_start , 0 );
+    buffer_write( obj_client.Buffer , buffer_u8 , 2 ); // Id of action.
+    buffer_write( obj_client.Buffer , buffer_u32 , mouse_x ); // X of new hub.
+    buffer_write( obj_client.Buffer , buffer_u32 , mouse_y ); // Y of new hub.
+    network_send_packet( obj_client.Socket , obj_client.Buffer , buffer_tell( obj_client.Buffer ) );
+}
 </string>
           </argument>
         </arguments>

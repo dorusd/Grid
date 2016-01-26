@@ -27,8 +27,8 @@
             <kind>1</kind>
             <string>/// Setting up variables.
 
-var owner = 0;
-var hub_id = 0;
+owner = 0;
+hub_id = 0;
 image_speed = 0;
 connections[] = 0;
 selected = false;

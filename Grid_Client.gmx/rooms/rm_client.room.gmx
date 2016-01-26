@@ -53,6 +53,7 @@
   <instances>
     <instance objName="obj_client" x="0" y="0" name="inst_894074DD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_player" x="32" y="0" name="inst_96D51526" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_hub" x="288" y="320" name="inst_C5FAAA64" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

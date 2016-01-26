@@ -6,7 +6,7 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-  <sprite>sprites\spr_hub</sprite>
+    <sprite>sprites\spr_hub</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -19,7 +19,7 @@
     <object>objects\obj_player</object>
   </objects>
   <rooms name="rooms">
-  <room>rooms\rm_client</room>
+    <room>rooms\rm_client</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
