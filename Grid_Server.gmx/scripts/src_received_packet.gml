@@ -17,4 +17,7 @@ switch(msgid) {
         obj_server.player_name[obj_server.playerID] = buffer_read(buffer, buffer_u32);
         obj_server.playerID += 1;
         break;
+        
+    case 4: // Player is ready.
+        players_ready += 1;
 }

@@ -62,21 +62,31 @@
     <sprite>sprites\spr_hub</sprite>
     <sprite>sprites\spr_main_hub</sprite>
     <sprite>sprites\spr_stats_box</sprite>
+    <sprite>sprites\spr_bg_title_color</sprite>
+    <sprite>sprites\spr_bg_title</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bg_title</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="received_packets">
       <script>scripts\src_create_hub.gml</script>
       <script>scripts\src_received_packet.gml</script>
       <script>scripts\src_create_main_hub.gml</script>
+      <script>scripts\src_send_ready.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_hub_name</font>
     <font>fonts\fnt_stats_box</font>
+    <font>fonts\font3</font>
   </fonts>
   <objects name="objects">
+    <objects name="title room">
+      <object>objects\obj_bg_color</object>
+      <object>objects\obj_bg</object>
+    </objects>
     <object>objects\obj_client</object>
     <object>objects\obj_hub</object>
     <object>objects\obj_hub_main</object>
@@ -85,7 +95,8 @@
     <object>objects\obj_player</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_client</room>
+    <room>rooms\rm_title</room>
+    <room>rooms\rm_game</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

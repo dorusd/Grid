@@ -17,8 +17,14 @@ switch(msgid) {
         src_create_main_hub(buffer);
         break;
     
-    case 4: // Make game start
-        obj_client.game_start = true;
-        show_message("Game has started");
+    case 4: // Make ready to set up game.
+        room_goto_next(); // Go to game room.
+        src_send_ready(); // Tell server client is ready.
+        break;
+        
+    case 5: // Start game.
+        view_wport[obj_player.cview] = 1024;
+        view_hport[obj_player.cview] = 768;
+        show_message("Game starts.");
         break;
 }

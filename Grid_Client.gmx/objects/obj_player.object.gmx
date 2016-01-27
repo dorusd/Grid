@@ -53,16 +53,19 @@ green = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Setting up variables for view.
+            <string>/// Variables for view.
 
 margin_x = 40;
 margin_y = 40;
-cview = 0; // Current view.
 speed_view_movement = 1;
 
+
+cview = 0; // Current view.
+    
 // Intial view location.
 view_xport[cview] = 0;
 view_yport[cview] = 0;
+
 </string>
           </argument>
         </arguments>

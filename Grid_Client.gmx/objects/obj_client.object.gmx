@@ -40,7 +40,6 @@ Result = 0;
 ping = 0;
 
 // Wait until game has started.
-room_speed = 1;
 game_start = false;
 </string>
           </argument>
@@ -91,37 +90,13 @@ Result = network_send_packet(Socket, Buffer, buffer_tell(Buffer));
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Send info to server.
+            <string>/// Send ping to server.
 
 // Send info for ping.
-buffer_seek( Buffer , buffer_seek_start , 0 );
-buffer_write( Buffer , buffer_u8 , 1 );
-buffer_write( Buffer , buffer_u32 , current_time );
-Result = network_send_packet( Socket , Buffer , buffer_tell( Buffer ) );
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Start game.
-if (game_start = true) {
-    room_speed = 500;
-}
+buffer_seek(Buffer, buffer_seek_start, 0);
+buffer_write(Buffer, buffer_u8, 1);
+buffer_write(Buffer, buffer_u32, current_time);
+Result = network_send_packet(Socket, Buffer, buffer_tell(Buffer));
 </string>
           </argument>
         </arguments>
@@ -178,8 +153,8 @@ switch( type_event ) {
             <kind>1</kind>
             <string>/// Destroy client.
 
-network_destroy( Socket );
-buffer_delete( Buffer );
+network_destroy(Socket);
+buffer_delete(Buffer);
 </string>
           </argument>
         </arguments>

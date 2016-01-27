@@ -1,8 +1,8 @@
-/// Script for sending start message to all players.
+/// Script for sending get ready to all players.
 
 // Create buffer.
 buffer_seek(Buffer, buffer_seek_start, 0);
-buffer_write(Buffer, buffer_u8, 5); // Action ID for game start.
+buffer_write(Buffer, buffer_u8, 4); // Action ID for game start.
 
 var clientid = 0;
 var socketid = 0;

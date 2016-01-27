@@ -38,6 +38,8 @@ Buffer = buffer_create(1024, buffer_fixed, 1);
 SocketList = ds_list_create();
 
 // Wait for start of game.
+players_ready = 0;
+game_ready = false;
 game_start = false;
 </string>
           </argument>
@@ -96,7 +98,7 @@ for (i = 0; i &lt; obj_server.players_amount; i++) {
             <string>/// Start game.
 
 // Wait until enough players are online to start the game.
-if ((ds_list_size(SocketList) == players_amount) and (game_start == false)) {
+if ((ds_list_size(SocketList) == players_amount) and (game_ready == false)) {
 
     // Check if all players have a name.
     names_given = true;
@@ -108,13 +110,17 @@ if ((ds_list_size(SocketList) == players_amount) and (game_start == false)) {
     if (names_given == true) {
         // Notify server.
         show_message("Game is about to start.");
-    
-        src_send_main_hub(); // Create main hubs for all players.
-        src_send_start_msg(); // Notify all players that game has started.
         
-        // Make sure game is only started once.
-        game_start = true;
+        src_send_get_ready(); // Asks all clients to get ready to start the game.
+
+        game_ready = true;
     }
+}
+
+if ((players_ready == players_amount) and game_start == false) {
+    src_send_main_hub(); // Create main hubs for all players.
+    src_send_start_msg(); // Notify all players that game has started.
+    game_start = true;
 }
 </string>
           </argument>
