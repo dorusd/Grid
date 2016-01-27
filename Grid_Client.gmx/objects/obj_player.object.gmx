@@ -29,6 +29,10 @@
 
 hub_selected = 0;
 
+red = 0;
+blue = 0;
+green = 0;
+
 </string>
           </argument>
         </arguments>
@@ -86,20 +90,24 @@ view_yport[cview] = 0;
 // Move screen to the left.
 if ((mouse_x - view_xview[cview] &lt; margin_x) and (view_xview[cview] != 0)) {
     view_xview[cview] -= speed_view_movement;
+    obj_stats_box.x -= speed_view_movement;
 }
 // Move screen to the right.
 if ((mouse_x - view_xview[cview] &gt; (view_wview[0] - margin_x)) and !(view_xview[cview] + view_wview[0] &gt;= room_width)) {
     view_xview[cview] += speed_view_movement;
+    obj_stats_box.x += speed_view_movement;
 }
 
 // Move screen up.
 if ((mouse_y - view_yview[cview] &lt; margin_y) and (view_yview[cview] != 0)) {
     view_yview[cview] -= speed_view_movement;
+    obj_stats_box.y -= speed_view_movement;
 }
 
 // Move screen down.
 if ((mouse_y - view_yview[0] &gt; (view_hview[cview] -  margin_y)) and !(view_yview[cview] + view_hview[cview] &gt;= room_height)) {
     view_yview[cview] += speed_view_movement;
+    obj_stats_box.y += speed_view_movement;
 }
 
 </string>

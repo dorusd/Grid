@@ -17,4 +17,10 @@ new_hub.owner = hub_owner;
 if (hub_owner == obj_client.player_name) {
     view_xview[obj_player.cview] = hub_x - (view_wview[obj_player.cview] / 2);
     view_yview[obj_player.cview] = hub_y - (view_hview[obj_player.cview] / 2);
+    
+    var center_x = view_xview[obj_player.cview] + (view_wview[obj_player.cview] / 2);
+    var bottom = view_yview[obj_player.cview] + view_hview[obj_player.cview];
+
+    obj_stats_box.x = center_x - 300;
+    obj_stats_box.y = bottom - 170;
 }
