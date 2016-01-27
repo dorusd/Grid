@@ -30,18 +30,45 @@
 // Ask player for server details.
 var ip = get_string("Server IP: ", "127.0.0.1");
 var port = real(get_string("Port: ", "6510"));
-var playerID = real(get_string("PlayerID: ", "A"));
+player_name = get_string("Player name: ", "A");
 
 // Connect to server.
-Socket = network_create_socket( network_socket_tcp );
-isConnected = network_connect( Socket , ip , port );
-Buffer = buffer_create( 1024 , buffer_fixed , 1 );
+Socket = network_create_socket(network_socket_tcp);
+isConnected = network_connect(Socket, ip, port);
+Buffer = buffer_create(1024, buffer_fixed, 1);
 Result = 0;
 Ping = 0;
 
 // Wait until game has started.
 room_speed = 1;
 game_start = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Send name to server.
+
+buffer_seek(Buffer, buffer_seek_start, 0);
+buffer_write(Buffer, buffer_u8, 3); // Action ID of player name.
+buffer_write(Buffer, buffer_u32, ord(string_char_at(obj_client.player_name, 1)));
+Result = network_send_packet(Socket, Buffer, buffer_tell(Buffer));
+
 </string>
           </argument>
         </arguments>

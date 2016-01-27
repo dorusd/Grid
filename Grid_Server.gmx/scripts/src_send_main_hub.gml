@@ -3,6 +3,7 @@
 main_hub_radius = 500;
 main_hub_radian = 0;
 radian_per_player = real((2 * pi) / (ds_list_size(obj_server.SocketList)));
+player = 0;
 
 repeat(ds_list_size(obj_server.SocketList)) {
     // Create buffer.
@@ -17,10 +18,14 @@ repeat(ds_list_size(obj_server.SocketList)) {
     obj_server_data.hub_count += 1;
     hub_id = obj_server_data.hub_count;
     
+    // Determine hub owner.
+    hub_owner = obj_server_data.player_name[player];
+    
     // Write on buffer.
     buffer_write(Buffer, buffer_u32, hub_x);
     buffer_write(Buffer, buffer_u32, hub_y);
     buffer_write(Buffer, buffer_u32, hub_id);
+    buffer_write(Buffer, buffer_u32, hub_owner);
     
     clientid = 0;
     socketid = 0;
@@ -35,4 +40,6 @@ repeat(ds_list_size(obj_server.SocketList)) {
     
     // Add to the radian.
     main_hub_radian += radian_per_player;
+    // Go to next player.
+    player += 1;
 }

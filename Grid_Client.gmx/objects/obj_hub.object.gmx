@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>/// Setting up variables.
 
-owner = 0;
+owner = chr(0);
 hub_id = 0;
 image_speed = 0;
 connections[] = 0;
@@ -57,15 +57,17 @@ selected = false;
             <kind>1</kind>
             <string>/// Draw for hub.
 
-// Draw the hub_id.
-draw_text(x, y+16, hub_id);
-
 // Draw the lines between all hubs.
 draw_self();
 
-for (i = 1; i &lt; array_length_1d(connections); i++) {
-    draw_line(x, y, connection[i].x, connections[i].y);
+// Draw the owner of hub.
+if (owner != chr(0)) {
+    draw_text(x-4, y+16, owner);
 }
+    
+//for (i = 1; i &lt; array_length_1d(connections); i++) {
+//    draw_line(x, y, connection[i].x, connections[i].y);
+//}
 </string>
           </argument>
         </arguments>

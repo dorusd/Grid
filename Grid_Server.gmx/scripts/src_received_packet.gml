@@ -39,6 +39,4 @@ switch( msgid ) {
     case 3: // Add name to player.
         obj_server_data.player_name[obj_server.playerID] = buffer_read(buffer, buffer_u32);
         obj_server.playerID += 1;
-        show_message("player: " + string(playerID) + " name: " + string(ord(obj_server_data.player_name[obj_server.playerID])));
-        
 }

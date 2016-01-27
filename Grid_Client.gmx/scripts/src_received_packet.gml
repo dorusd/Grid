@@ -23,9 +23,11 @@ switch(msgid) {
         var hub_x = buffer_read(buffer, buffer_u32);
         var hub_y = buffer_read(buffer, buffer_u32);
         var hub_id = buffer_read(buffer, buffer_u32);
+        var hub_owner = chr(buffer_read(buffer, buffer_u32));
          
         var new_hub = instance_create(hub_x, hub_y, obj_hub_main);
         new_hub.hub_id = hub_id;
+        new_hub.owner = hub_owner;
         
         // Set view to center on player's main hub.
         break;

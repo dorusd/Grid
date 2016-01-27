@@ -11,7 +11,7 @@
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\ReceivedPacket.gml</script>
+    <script>scripts\src_received_packet.gml</script>
     <scripts name="start_server">
       <script>scripts\src_send_main_hub.gml</script>
       <script>scripts\src_send_start_msg.gml</script>

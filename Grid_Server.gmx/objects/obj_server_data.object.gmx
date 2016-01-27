@@ -29,6 +29,11 @@
 
 hub_count = 0;
 map_size = 2000;
+
+// Give all player a zero as default name.
+for (i = 0; i &lt; obj_server.players_amount; i++) {
+    player_name[i] = 0;
+}
 </string>
           </argument>
         </arguments>

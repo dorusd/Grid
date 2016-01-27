@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>-1</persistent>
+  <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -29,16 +29,19 @@
 
 // Ask player for server info.
 port = real(get_string("Port: ","6510"));
-amount_players = real(get_string("Number of players: ","2"));
+players_amount = real(get_string("Number of players: ","2"));
 
 // Create server.
-Server = network_create_server(network_socket_tcp , port , amount_players);
+Server = network_create_server(network_socket_tcp, port, players_amount);
 
-Buffer = buffer_create(1024 , buffer_fixed , 1);
+Buffer = buffer_create(1024, buffer_fixed, 1);
 SocketList = ds_list_create();
 
 // Wait for start of game.
 game_start = false;
+
+// Give player a ID.
+playerID = 0;
 </string>
           </argument>
         </arguments>
@@ -64,16 +67,26 @@ game_start = false;
             <string>/// Start game.
 
 // Wait until enough players are online to start the game.
-if ((ds_list_size(SocketList) == amount_players) and (game_start == false)) {
-    
-    // Notify server.
-    show_message("Game is about to start.");
+if ((ds_list_size(SocketList) == players_amount) and (game_start == false)) {
 
-    src_send_main_hub(); // Create main hubs for all players.
-    src_send_start_msg(); // Notify all players that game has started.
+    // Check if all players have a name.
+    names_given = true;
+    for (i = 0; i &lt; players_amount; i++) {
+        if (obj_server_data.player_name[i] == 0) {
+            names_given = false;
+            show_message(string(i));
+        }
+    }
+    if (names_given == true) {
+        // Notify server.
+        show_message("Game is about to start.");
     
-    // Make sure game is only started once.
-    game_start = true;
+        src_send_main_hub(); // Create main hubs for all players.
+        src_send_start_msg(); // Notify all players that game has started.
+        
+        // Make sure game is only started once.
+        game_start = true;
+    }
 }
 </string>
           </argument>
@@ -99,28 +112,28 @@ if ((ds_list_size(SocketList) == amount_players) and (game_start == false)) {
             <kind>1</kind>
             <string>/// Read network traffic.
    
-var type_event = ds_map_find_value( async_load , "type" );
+var type_event = ds_map_find_value(async_load, "type");
 
-switch( type_event ) {
+switch(type_event) {
     case network_type_connect:
-        var socket = ds_map_find_value( async_load , "socket" );
-        ds_list_add( SocketList , socket );
+        var socket = ds_map_find_value(async_load, "socket");
+        ds_list_add(SocketList, socket);
         break;
         
     case network_type_disconnect:
-        var socket = ds_map_find_value( async_load , "socket" );
-        var findsocket = ds_list_find_index( SocketList , socket );
+        var socket = ds_map_find_value(async_load, "socket");
+        var findsocket = ds_list_find_index(SocketList, socket);
          
-        if ( findsocket &gt;= 0 ) {
-            ds_list_delete( SocketList , findsocket );
+        if (findsocket &gt;= 0) {
+            ds_list_delete(SocketList, findsocket);
         }
         break;
         
     case network_type_data:
-        var buffer = ds_map_find_value( async_load , "buffer" );
-        var socket = ds_map_find_value( async_load , "id" );
-        buffer_seek( buffer , buffer_seek_start , 0 );
-        ReceivedPacket( buffer , socket );
+        var buffer = ds_map_find_value(async_load, "buffer");
+        var socket = ds_map_find_value(async_load, "id");
+        buffer_seek(buffer, buffer_seek_start, 0);
+        src_received_packet(buffer, socket);
         break;
 }
 </string>
