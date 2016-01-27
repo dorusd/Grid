@@ -12,7 +12,11 @@
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\src_received_packet.gml</script>
+    <scripts name="received_packets">
+      <script>scripts\src_create_hub.gml</script>
+      <script>scripts\src_received_packet.gml</script>
+      <script>scripts\src_create_main_hub.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <object>objects\obj_client</object>

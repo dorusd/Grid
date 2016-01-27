@@ -37,7 +37,7 @@ Socket = network_create_socket(network_socket_tcp);
 isConnected = network_connect(Socket, ip, port);
 Buffer = buffer_create(1024, buffer_fixed, 1);
 Result = 0;
-Ping = 0;
+ping = 0;
 
 // Wait until game has started.
 room_speed = 1;

@@ -11,15 +11,15 @@ repeat(ds_list_size(obj_server.SocketList)) {
     buffer_write(Buffer, buffer_u8, 3); // Action ID for main hub.
     
     //  Determine hub location.
-    hub_x = (sin(main_hub_radian) * main_hub_radius) + (obj_server_data.map_size / 2);
-    hub_y = (cos(main_hub_radian) * main_hub_radius) + (obj_server_data.map_size / 2);
+    hub_x = (sin(main_hub_radian) * main_hub_radius) + (obj_server.map_size / 2);
+    hub_y = (cos(main_hub_radian) * main_hub_radius) + (obj_server.map_size / 2);
     
     // Determine hub ID.
-    obj_server_data.hub_count += 1;
-    hub_id = obj_server_data.hub_count;
+    obj_server.hub_count += 1;
+    hub_id = obj_server.hub_count;
     
     // Determine hub owner.
-    hub_owner = obj_server_data.player_name[player];
+    hub_owner = obj_server.player_name[player];
     
     // Write on buffer.
     buffer_write(Buffer, buffer_u32, hub_x);

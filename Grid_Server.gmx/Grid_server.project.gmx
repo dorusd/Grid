@@ -11,7 +11,11 @@
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\src_received_packet.gml</script>
+    <scripts name="received_packets">
+      <script>scripts\src_send_ping.gml</script>
+      <script>scripts\src_received_packet.gml</script>
+      <script>scripts\src_send_hub.gml</script>
+    </scripts>
     <scripts name="start_server">
       <script>scripts\src_send_main_hub.gml</script>
       <script>scripts\src_send_start_msg.gml</script>
@@ -19,7 +23,6 @@
   </scripts>
   <objects name="objects">
     <object>objects\obj_server</object>
-    <object>objects\obj_server_data</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_create_server</room>

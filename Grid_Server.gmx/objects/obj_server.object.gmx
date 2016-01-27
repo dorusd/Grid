@@ -39,9 +39,38 @@ SocketList = ds_list_create();
 
 // Wait for start of game.
 game_start = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Set up game variables.
 
 // Give player a ID.
 playerID = 0;
+
+hub_count = 0;
+map_size = 2000;
+
+// Give all player a zero as default name.
+for (i = 0; i &lt; obj_server.players_amount; i++) {
+    player_name[i] = 0;
+}
 </string>
           </argument>
         </arguments>
@@ -72,7 +101,7 @@ if ((ds_list_size(SocketList) == players_amount) and (game_start == false)) {
     // Check if all players have a name.
     names_given = true;
     for (i = 0; i &lt; players_amount; i++) {
-        if (obj_server_data.player_name[i] == 0) {
+        if (obj_server.player_name[i] == 0) {
             names_given = false;
             show_message(string(i));
         }
