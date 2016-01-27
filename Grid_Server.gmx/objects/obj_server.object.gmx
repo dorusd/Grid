@@ -103,7 +103,6 @@ if ((ds_list_size(SocketList) == players_amount) and (game_start == false)) {
     for (i = 0; i &lt; players_amount; i++) {
         if (obj_server.player_name[i] == 0) {
             names_given = false;
-            show_message(string(i));
         }
     }
     if (names_given == true) {
