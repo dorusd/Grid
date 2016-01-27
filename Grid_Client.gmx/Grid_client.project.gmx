@@ -3,6 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
+  <datafiles number="1" name="datafiles"/>
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
@@ -18,6 +19,9 @@
       <script>scripts\src_create_main_hub.gml</script>
     </scripts>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\fnt_hub_name</font>
+  </fonts>
   <objects name="objects">
     <object>objects\obj_client</object>
     <object>objects\obj_hub</object>

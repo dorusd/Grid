@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>10</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -30,6 +30,7 @@
 room_xcenter = room_width / 2;
 room_ycenter = room_height / 2;
 
+draw_set_colour(c_black);
 draw_circle(room_xcenter, room_ycenter, 2, true);
 draw_circle(room_xcenter, room_ycenter, 100, true);
 draw_circle(room_xcenter, room_ycenter, 200, true);

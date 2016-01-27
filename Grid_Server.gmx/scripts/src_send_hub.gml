@@ -6,7 +6,7 @@ var socket = argument[1];
 // Read hub details from buffer.
 var hub_x = buffer_read(buffer, buffer_u32);
 var hub_y = buffer_read(buffer, buffer_u32);
-obj_server_data.hub_count += 1;
+obj_server.hub_count += 1;
 var hub_id = obj_server.hub_count;
 
 // Create new buffer.

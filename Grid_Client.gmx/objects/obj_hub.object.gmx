@@ -62,7 +62,15 @@ draw_self();
 
 // Draw the owner of hub.
 if (owner != chr(0)) {
-    draw_text(x-4, y+16, owner);
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    if (selected ==  false) {
+        draw_set_color(c_white);
+    } else {
+        draw_set_color(c_gray);
+    }
+    draw_set_font(fnt_name1);
+    draw_text(x, y, owner);
 }
     
 //for (i = 1; i &lt; array_length_1d(connections); i++) {

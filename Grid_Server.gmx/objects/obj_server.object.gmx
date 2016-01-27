@@ -29,7 +29,7 @@
 
 // Ask player for server info.
 port = real(get_string("Port: ","6510"));
-players_amount = real(get_string("Number of players: ","2"));
+players_amount = real(get_string("Number of players: ","1"));
 
 // Create server.
 Server = network_create_server(network_socket_tcp, port, players_amount);
