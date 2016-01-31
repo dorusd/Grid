@@ -24,6 +24,7 @@
   </scripts>
   <objects name="objects">
     <object>objects\obj_server</object>
+    <object>objects\LSH</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_create_server</room>
