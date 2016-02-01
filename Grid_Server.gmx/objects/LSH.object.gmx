@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var grid = new array_height_2d(4);
+            <string>/*var grid = new array_height_2d(4);
 
 var n=4
 var m=n*n;
@@ -39,7 +39,7 @@ for(i=0;i&lt;m;i+=1)
 ds_list_add(list1,i)
 ds_list_add(list2,i)
 }
-
+*/
 
 </string>
           </argument>

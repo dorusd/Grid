@@ -3,10 +3,14 @@
 var buffer = argument[0];
 
 // Read from the buffer.
-var hub_x = buffer_read(buffer, buffer_u32);
-var hub_y = buffer_read(buffer, buffer_u32);
+var main_hub_radius = buffer_read(buffer, buffer_u32);
+var main_hub_radian = buffer_read(buffer, buffer_f32) + obj_field.radian_offset;
 var hub_id = buffer_read(buffer, buffer_u32);
 var hub_owner = chr(buffer_read(buffer, buffer_u32));
+
+//  Determine hub location.
+hub_x = (sin(main_hub_radian) * main_hub_radius) + (obj_field.map_size / 2);
+hub_y = (cos(main_hub_radian) * main_hub_radius) + (obj_field.map_size / 2);
 
 // Create main hub.
 var new_hub = instance_create(hub_x, hub_y, obj_hub_main);

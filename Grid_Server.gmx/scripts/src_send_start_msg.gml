@@ -8,7 +8,7 @@ var clientid = 0;
 var socketid = 0;
 
 // Make game start on all servers.
-repeat(ds_list_size(obj_server.SocketList)) {
+repeat(obj_server.players_amount) {
     // Send buffer trough socket.
     socketid = ds_list_find_value(obj_server.SocketList, clientid);
     network_send_packet(socketid, Buffer, buffer_tell(Buffer));

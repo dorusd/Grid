@@ -31,6 +31,8 @@
 var ip = get_string("Server IP: ", "127.0.0.1");
 var port = real(get_string("Port: ", "6510"));
 player_name = get_string("Player name: ", "A");
+player_id = 0;
+players_amount = 0;
 
 // Connect to server.
 Socket = network_create_socket(network_socket_tcp);

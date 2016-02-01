@@ -19,12 +19,14 @@ switch(msgid) {
     
     case 4: // Make ready to set up game.
         room_goto_next(); // Go to game room.
+        obj_client.players_amount = buffer_read(buffer, buffer_u8);
+        obj_client.player_id = buffer_read(buffer, buffer_u8);
+        instance_create(0, 0, obj_field);
+        obj_field.map_size = buffer_read(buffer, buffer_u32);
         src_send_ready(); // Tell server client is ready.
         break;
         
     case 5: // Start game.
-        view_wport[obj_player.cview] = 1024;
-        view_hport[obj_player.cview] = 768;
         show_message("Game starts.");
         break;
 }
